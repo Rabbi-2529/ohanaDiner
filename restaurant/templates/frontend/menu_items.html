@@ -1,0 +1,220 @@
+{% extends "frontend/base/base.html" %}
+{% load static %}
+
+{% block custom_Css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/stylesheets/custom_style.css' %}">
+{% endblock custom_Css %}
+
+
+{% block main_content %}
+    <div class="page-title parallax parallax1 flat_strech">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">                    
+                    <div class="page-title-heading">
+                        <h1 class="title">{{ company.name }} Menu</h1>
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li> <a href="{% url 'home' %}">Home </a></li>
+                                <li><a href="{% url 'nav_menu' company.slug_name company.id %}">{{ company.name }} Menu</a></li>
+                            </ul>                   
+                        </div>
+                    </div><!-- /.page-title-captions -->                        
+                </div><!-- /.col-md-12 -->  
+            </div><!-- /.row -->  
+        </div><!-- /.container -->                      
+    </div>  
+
+
+    <section class="flat-row menu-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title-section style1 ">
+                        <div class="top-section">
+                            <p>Discover</p>
+                        </div>
+                        <h1 class="title">Menu Hot</h1>
+                    </div>
+                </div><!--col-md-12-->
+            </div><!--row-->
+
+
+            
+            <div class="row">
+                {% for hot_deal_menu_item in hot_deal_menu_items %}
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="product effect1">
+                            <div class="box-wrap">
+                                <div class="box-image">
+                                    {% comment %} <a href="#"><img src="{% static 'frontend/images/imagebox/2.jpg' %}" alt="images" class="hot-deal-menu-item-img"></a> {% endcomment %}
+                                    <a href="{% url 'menu_single' hot_deal_menu_item.slug_name company.id hot_deal_menu_item.id %}"><img src="{{ hot_deal_menu_item.thumb_image.url }}" alt="images" class="hot-deal-menu-item-img"></a>
+                                </div>
+                                <div class="box-content">
+                                    <h6>{{ hot_deal_menu_item.name }}</h6>
+                                    <ul>
+                                        <li>{{ hot_deal_menu_item.price }}</li>
+                                        <li>
+                                            <i class="fa fa-heart"></i>
+                                            <i class="fa fa-heart"></i>
+                                            <i class="fa fa-heart"></i>
+                                            <i class="fa fa-heart"></i>
+                                            <i class="fa fa-heart"></i>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div><!--row-->
+        </div><!--container -->
+    </section>
+
+
+    <!-- Flat Tab-->
+
+    <section class="flat-row flat-tab-menu menu-2">
+        <div class="container">
+            <div class="row">
+            </div><!--/.row-->
+
+            <div class="row">
+                <div class="col-md-12 flat-tabs ">
+                    <div class="bg-tabs">
+                        <div class="title-section style1 martp-0px">
+                            <div class="top-section">
+                            <p>Find About</p>
+                            </div>
+                                <h1 class="title marbt-33px" style="color: white;">Our Menu</h1>
+                        </div>
+
+                        <ul class="menu-tab">
+                            {% for category in categories %}
+                                <li><a href="#" style="color: white;">{{ category.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div><!--/.bg-tabs-->
+
+                    <div class="flat-divider d67px"></div>
+
+                    <div class="content-tab">
+
+                        {% for category in categories %}
+                            <div class="content-inner">
+                                {% for menu_item in category.menu_items.all %}
+                                    <div class="col-md-6">
+                                        <ul class="menu-fd">
+                                            <li>
+                                                <div class="media-wrap">
+                                                    <a href="{% url 'menu_single' menu_item.slug_name company.id menu_item.id %}" class="pull-left">
+                                                        <img src="{% static 'frontend/images/menufood/1.png' %}" alt="client" class="img-responsive">
+                                                    </a>
+
+                                                    <div class="media-body">
+                                                        <h6><a href="#">{{ menu_item.name }}</a></h6>
+                                                        <span>{{ menu_item.price }}</span>
+                                                    </div>
+
+                                                    <ul class="menu-in">
+                                                        {% for ingredient in menu_item.ingredients.all %}
+                                                            <li>{{ ingredient.name }}</li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+
+                                    </div><!-- /.col-md-6" -->
+                                {% endfor %}
+
+
+                                <div class="clearfix"></div>
+
+                                <div class="flat-divider d35px"></div>
+
+                                <div class="read-more view-all">
+
+                                    <a href="#">View All Menu</a>
+
+                                </div>
+
+                            </div><!-- /.content-inner -->
+                        {% endfor %}
+
+
+                        <div class="content-inner">
+
+                            <p>Coupling a blended linen construction with tailored style, the River Island HR Jasper Blazer will imprint a touch of dapper charm into your after-dark wardrobe. Our model is wearing a size medium blazer, and usually takes a size medium/38L shirt.</p>
+                        </div><!-- /.content-inner -->                                    
+                    </div><!-- /.content-tab -->
+                </div><!--flat-tabs-->  
+            </div><!--row-->
+        </div><!--container -->
+    </section>
+
+    <section class="flat-row menu-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="reservation-page-right">
+                        <img src="{% static 'frontend/images/maketrevation/1.png' %}" class="img-responsive" alt="reservation-banner"> 
+                    </div>
+                </div><!--col-md-5-->
+
+                <div class="col-md-7">
+                    <div class="reservation-page-left">
+                        <div class="reservation-page-form"> 
+                            <div class="title-section">
+                                <div class="top-section">
+                                    <p>Well come to Sumi Restaurant</p>
+                                </div>
+                                <h1 class="title">Make a Reservation</h1>
+                            </div>
+
+                            <ul>
+                                <li>Monday to Tuesday <span>09:00 AM - 22:00 PM</span> </li>
+                                <li>Friday to Sunday <span>11:00 AM - 20:00 PM</span></li>
+                            </ul>
+
+                            <h1 class="phone">+12345 678 910</h1>
+                            <h3><span>Book a table</span></h3>
+
+                            <form id="reservation-form" action ="https://themesflat.co/html/sumi/contact/contact-process.php">
+                                <div class="reservation-page-input-box">
+                                    <label>Your name</label>
+                                    <input type="text" class="form-control" placeholder="Full name" name="name" id="form-name" data-error="Subject field is required" required="">
+                                </div>
+
+                                <div class="reservation-page-input-box">
+                                    <label>Time</label>
+                                    <span class="fa fa-calendar date_picker" aria-hidden="true">
+                                        <input type="text" placeholder="03/09/2017" name="datepicker" id="date-picker" data-error="Subject field is required" required=""> </span>
+                                        <span class="fa fa-clock-o time_picker" aria-hidden="true">
+                                            <input type="text" placeholder="06:00" name="timepicker" id="time-picker" data-error="Subject field is required" required="">
+                                        </span>
+                                </div>
+
+                                <div class="reservation-page-input-box">
+                                    <label>Phone number</label>
+                                    <input type="text" class="form-control" placeholder="Your phone" name="phone" id="form-phone" data-error="Subject field is required" required="">
+                                </div>
+
+                                <div class="reservation-page-input-box">
+                                    <label>Seats</label>
+                                    <input type="text" class="form-control rt-date" placeholder="6 persons" name="date" id="form-date" data-error="Subject field is required" required="">
+                                </div>
+
+                                <div class="reservation-booking">
+                                    <button type="submit" class="book-now-btn">Booking now</button>
+                                </div>
+                            </form>                                 
+
+                        </div>
+                    </div>
+                </div><!--col-md-7-->
+            </div><!--row-->
+        </div><!--container -->
+    </section>
+{% endblock main_content %}

@@ -1,0 +1,328 @@
+{% extends "frontend/base/base.html" %}
+{% load static %}
+
+{% block custom_Css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/stylesheets/custom_style.css' %}">
+{% endblock custom_Css %}
+
+
+{% block main_content %}
+    <!-- Page Title -->
+    <div class="page-title parallax parallax1 flat_strech">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">                    
+                    <div class="page-title-heading">
+                        <h1 class="title">Menu Single</h1>
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li> <a href="#">Home </a></li>
+                                <li><a href="#">Our menu</a></li>
+                            </ul>                   
+                        </div>
+                    </div><!-- /.page-title-captions -->                        
+                </div><!-- /.col-md-12 -->  
+            </div><!-- /.row -->  
+        </div><!-- /.container -->                      
+    </div>  
+
+    <!-- Flat row -->
+    <div class="flat-row flat-wooc">
+        <div class="container">
+            <div class="row">
+                <div class="woocommerce-page clearfix"> 
+                    <div class="col-md-6">                 
+                        <div class="flat-product-single-slider">
+                            <div id="flat-product-flexslider">
+                                <ul class="slides">
+                                    <li><img width="570" height="570" alt="product-single" src="{{ menu_item.thumb_image.url }}" class="attachment-themesflat-gallery-product size-themesflat-gallery-product"  /></li>
+                                    {% for menu_image in menu_item.images.all %}
+                                        <li><img width="570" height="570" alt="product-single" src="{{ menu_image.image.url }}" class="attachment-themesflat-gallery-product size-themesflat-gallery-product"  /></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                            <div id="flat-product-carousel">
+                                <ul class="slides">
+                                    <li><img width="570" height="570" alt="product-single" src="{{ menu_item.thumb_image.url }}" class="attachment-themesflat-gallery-product size-themesflat-gallery-product"  /></li>
+                                    {% for menu_image in menu_item.images.all %}
+                                        <li><img width="570" height="570" alt="product-single" src="{{ menu_image.image.url }}" class="attachment-themesflat-gallery-product size-themesflat-gallery-product"  /></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div><!-- /.flat-portfolio-single-slider --> 
+                    </div><!--/.col-md-6 -->  
+
+                    <div class="col-md-6">
+                        <div class="entry-summary">
+                            <h2 class="product_title">{{ menu_item.name }}</h2>
+
+                            <ul class="favorite">   
+                                <li>
+                                    <i class="fa fa-heart"></i>
+                                    <i class="fa fa-heart"></i>
+                                    <i class="fa fa-heart"></i>
+                                    <i class="fa fa-heart"></i>
+                                    <i class="fa fa-heart"></i>
+                                </li>
+                            </ul>
+
+                            <p class="price">{{ menu_item.price }}</p>
+
+                            <div class="description">
+                                <p>{{ menu_item.description }}</p>
+                            </div>
+
+                            <ul class="iconlist">
+                                {% for ingredient in menu_item.ingredients.all %}
+                                    <li><i class="fa fa-circle-o"></i> {{ ingredient.name }} </li>
+                                {% endfor %}
+                            </ul>
+
+                            <form class="cart clearfix" method="post">
+                                <div class="quantity">
+                                    <input type="number" step="1" min="1" name="quantity" value="4" title="Qty" class="input-text qty text" size="4">
+                                </div>
+                                <input type="hidden" name="add-to-cart" value="191">
+
+                                <button type="submit" class="single_booking_button">Booking now</button>
+
+                                <button type="submit" class="single_add_to_cart_button border">add to cart</button>
+                            </form>
+
+
+                            <ul class="flat-socials">
+                                <li>Share link: </li>
+                                <li class="twitter">
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li class="facebook">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li class="instagram">
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                </li> 
+                                <li class="linkin">
+                                    <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+                                </li>  
+                            </ul>
+                        </div><!-- /.entry-summary -->
+                    </div><!--/.col-md-8 -->
+                </div><!--/.woocommerce-page -->
+            </div><!--/.row -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="flat-accordion">
+                        <div class="flat-toggle">
+                            <h4 class="toggle-title active">DESCRIPTION</h4>
+                            <div class="toggle-content">
+                                <p>{{ menu_item.description }}</p>
+                                </div>
+                            </div><!-- /toggle -->
+
+                            <div class="flat-toggle">
+                                <h4 class="toggle-title">ASSITIONAL INFORMATION</h4>
+                                <div class="toggle-content">
+                                    <p>{{ menu_item.description }}</p>                               
+                                </div>
+                            </div><!-- /toggle -->
+
+                            <!--<div class="flat-toggle">
+                                <h4 class="toggle-title">CUSTOMER REVIEWS <span>(19)</span></h4>
+                                <div class="toggle-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>                               
+                                </div>
+                            </div>-->
+                            <!-- /toggle -->
+
+
+                        </div><!-- /.flat-accordion -->
+                    </div><!--/.col-md-12 -->
+                </div><!--/.row -->
+                <!--  <div class="flat-divider d62px"></div> -->
+            </div><!--/.container -->
+        </div><!--/.flat-row -->
+
+        <div class="related products-row">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-section style5">
+                            <h1 class="title">Related Products</h1>
+                        </div>
+                    </div><!--/.col-md-12-->
+                </div>
+
+                <div class="row">
+                    <div class="related products clearfix">
+                        {% for menu_item in category.menu_items.all %}
+                            <div class="col-sm-3 col-xs-6 style2">
+                                <div class="product effect1">
+                                    <div class="box-wrap">
+                                        <div class="box-image">
+                                            <a href="#"><img src="{% static 'frontend/images/imagebox/4.jpg' %}" alt="images"></a>
+                                        </div>
+                                        <div class="box-content">
+                                            <h6>{{ menu_item.name }}</h6>
+                                            <ul>
+                                                <li >{{ menu_item.price }}</li>
+                                                <li >
+                                                    <i class="fa fa-heart"></i>
+                                                    <i class="fa fa-heart"></i>
+                                                    <i class="fa fa-heart"></i>
+                                                    <i class="fa fa-heart"></i>
+                                                    <i class="fa fa-heart"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <!--<div class="col-sm-3 col-xs-6 style2">
+                            <div class="product effect1">
+                                <div class="box-wrap">
+                                    <div class="box-image">
+                                        <a href="#"><img src="{% static 'frontend/images/shop/2.jpg' %}" alt="images"></a>
+                                    </div>
+                                    <div class="box-content">
+                                        <h6>CRAB WITH CURRY SOURCES</h6>
+                                        <ul>
+                                            <li >$19.9</li>
+                                            <li >
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3 col-xs-6 style2">
+                            <div class="product effect1">
+                                <div class="box-wrap">
+                                    <div class="box-image">
+                                        <a href="#"><img src="{% static 'frontend/images/shop/3.jpg' %}" alt="images"></a>
+                                    </div>
+                                    <div class="box-content">
+                                    <h6>PORK WITH ITALIAN SALSA</h6>
+                                        <ul>
+                                            <li >$19.9</li>
+                                            <li >
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3 col-xs-6 style2">
+                            <div class="product effect1">
+                                <div class="box-wrap">
+                                    <div class="box-image">
+                                        <a href="#"><img src="{% static 'frontend/images/shop/4.jpg' %}" alt="images"></a>
+                                    </div>
+                                    <div class="box-content">
+                                        <h6>PORK WITH ITALIAN SALSA</h6>
+                                        <ul>
+                                            <li >$19.9</li>
+                                            <li >
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                                <i class="fa fa-heart"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+
+                    </div><!-- /.related products -->
+                </div><!-- /.row -->
+
+                <div class="flat-divider d47px"></div>
+                <div class="kf_property_line1"></div>
+            </div><!-- /.container -->
+        </div>
+
+        <!-- Flat make resvervation -->
+        <section class="flat-row menu-single2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="reservation-page-right">
+                            <img src="{% static 'frontend/images/maketrevation/1.png' %}" class="" alt="reservation-banner"> 
+                        </div>
+                    </div><!--col-md-5-->
+
+                    <div class="col-md-7">
+                        <div class="reservation-page-left">
+
+                            <div class="reservation-page-form"> 
+
+                                <div class="title-section">
+                                    <div class="top-section">
+                                        <p>Well come to Sumi Restaurant</p>
+                                    </div>
+                                    <h1 class="title">Make a Reservation</h1>
+                                </div>
+
+                                <ul>
+                                    <li>Monday to Tuesday <span>09:00 AM - 22:00 PM</span> </li>
+                                    <li>Friday to Sunday <span>11:00 AM - 20:00 PM</span></li>
+                                </ul>
+
+                                <h1 class="phone">+12345 678 910</h1>
+
+                                <h3><span>Book a table</span></h3>
+
+                                <form id="reservation-form" action ="contact/contact-process.php">                                        
+                                    <div class="reservation-page-input-box">
+                                        <label>Your name</label>
+                                        <input type="text" class="form-control" placeholder="Full name" name="name" id="form-name" data-error="Subject field is required" required="">
+                                    </div>
+                                    <div class="reservation-page-input-box">
+                                        <label>Time</label>
+                                        <span class="fa fa-calendar date_picker" aria-hidden="true">
+                                            <input type="text" placeholder="03/09/2017" name="datepicker" id="date-picker" data-error="Subject field is required" required=""> </span>
+                                            <span class="fa fa-clock-o time_picker" aria-hidden="true">
+                                                <input type="text" placeholder="06:00" name="timepicker" id="time-picker" data-error="Subject field is required" required="">
+                                            </span>
+                                        </div>
+                                        <div class="reservation-page-input-box">
+                                            <label>Phone number</label>
+                                            <input type="text" class="form-control" placeholder="Your phone" name="phone" id="form-phone" data-error="Subject field is required" required="">
+                                        </div>
+                                        <div class="reservation-page-input-box">
+                                            <label>Seats</label>
+                                            <input type="text" class="form-control rt-date" placeholder="6 persons" name="date" id="form-date" data-error="Subject field is required" required="">
+                                        </div>
+
+                                        <div class="reservation-booking">
+                                            <button type="submit" class="book-now-btn">Booking now</button>
+                                    </div>
+
+                                </form>                                 
+                            </div>
+                                
+                        </div>
+                    </div><!--col-md-7-->
+                </div><!--row-->
+            </div><!--container -->
+        </section>
+{% endblock main_content %}

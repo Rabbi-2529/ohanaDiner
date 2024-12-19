@@ -1,0 +1,22 @@
+.owner-profile-container{
+    display: flex;
+    justify-content: center;
+}
+
+.each-owner-profile{
+    width: 33.33%;
+}
+
+.owner-profile-image-div{
+    display: flex;
+    justify-content: center;
+}
+
+.company-profile-image-div{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.company-profile-contact-text{
+    font-weight: 600;
+}

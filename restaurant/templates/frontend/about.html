@@ -1,0 +1,675 @@
+{% extends "frontend/base/base.html" %}
+{% load static %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/stylesheets/custom_style.css' %}">
+{% endblock custom_css %}
+
+{% block main_content %}
+    <div class="page-title parallax flat_strech parallax1">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-12">                    
+
+                    <div class="page-title-heading">
+
+                        <h1 class="title">About Us</h1>
+
+                        <div class="breadcrumbs">
+
+                            <ul>
+
+                                <li> <a href="{% url 'home' %}">Home </a></li>
+
+                                <li><a href="{% url 'about' %}">About</a></li>
+
+                            </ul>                   
+
+                        </div>
+
+                    </div><!-- /.page-title-captions -->                        
+
+                </div><!-- /.col-md-12 -->  
+
+            </div><!-- /.row -->  
+
+        </div><!-- /.container -->                      
+
+    </div>  
+
+
+
+    <!-- Flat Our Story -->
+
+    <section class="flat-row about-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="flat-divider d42px"></div>
+                    {% for about in about_us %}
+                        <div class="title-section style2 padle-0px ">
+                            <h1 class="title">{{ about.title }}</h1>                            
+                        </div>
+                        <div style="margin-bottom: 40px;">{{ about.description|striptags }}</div>
+                        {% comment %} <p style="margin-bottom: 40px;">{{ about.description|striptags }}</p> {% endcomment %}
+                    {% endfor %}
+                </div><!--col-md-6-->  
+
+                <div class="col-md-6">
+                    <div class="img-our">
+                        <img src="{% static 'frontend/images/imagebox/5.png' %}" alt="images">
+                    </div>
+                </div><!--col-md-6-->   
+            </div><!--row-->
+        </div><!--container -->
+    </section>
+
+
+    <!-- Flat Why Choose US -->
+    <section class="flat-row about-2">
+        <div class="container">
+            {% for company_profile in company_profiles %}
+                {% if forloop.counter|divisibleby:2 %}
+                    <div class="row">
+                        <div class="company-profile-image-div col-md-6">
+                            <!--<img src="{% static 'frontend/images/imagebox/6.png' %}" alt="images">-->
+                            {% if company_profile.image %}
+                                <img src="{{ company_profile.image.url }}" alt="images">
+                            {% else %}
+                                <img src="{% static 'frontend/images/imagebox/6.png' %}" alt="images"> 
+                            {% endif %}
+                            
+                        </div><!--col-md-6-->   
+
+                        <div class="col-md-6 company-profile-details">
+                            <div class="flat-divider d100px"></div>
+                            <div class="title-section style2 ">
+                                <h1 class="title">{{ company_profile.company.name }}</h1>
+                            </div>
+                            <div>{{ company_profile.description|striptags }}</div>
+
+
+                            {% if company_profile.email %}
+                            <div class="company-profile-email-div" style="margin-top: 20px;">
+                                <p><span class="company-profile-contact-text">Email: {{ company_profile.email }}</span></p>
+                            </div>
+                            {% endif %}
+
+                            {% if company_profile.phone %}
+                            <div class="company-profile-email-div">
+                                <p><span class="company-profile-contact-text">Phone: {{ company_profile.phone }}</span></p>
+                            </div>
+                            {% endif %}
+
+                            {% if company_profile.facebook_link %}
+                            <div class="company-profile-email-div" style="margin-top: 20px;">
+                                <p><span class="company-profile-contact-text">Facebook: <a href="{{ company_profile.facebook_link }}"><span style="color: blue;">{{ company_profile.company.name }}</span></a></span></p>
+                            </div>
+                            {% endif %}
+
+                            {% if company_profile.instagram_link %}
+                            <div class="company-profile-email-div">
+                                <p><span class="company-profile-contact-text">Instagram: {{ company_profile.instagram_link }}</span></p>
+                            </div>
+                            {% endif %}
+
+                            {% if company_profile.tiktok_link %}
+                            <div class="company-profile-email-div">
+                                <p><span class="company-profile-contact-text">Tiktok: {{ company_profile.tiktok_link }}</span></p>
+                            </div>
+                            {% endif %}
+                        </div><!--col-md-6-->  
+                    </div><!--row-->
+
+                {% else %}
+                    <div class="row">
+                        <div class="col-md-6 company-profile-details">
+                            <div class="flat-divider d100px"></div>
+                            <div class="title-section style2 ">
+                                <h1 class="title">{{ company_profile.company.name }}</h1>
+                            </div>
+                            <div>{{ company_profile.description|striptags }}</div>
+
+
+                            {% if company_profile.email %}
+                            <div class="company-profile-email-div" style="margin-top: 20px;">
+                                <p><span class="company-profile-contact-text">Email: {{ company_profile.email }}</span></p>
+                            </div>
+                            {% endif %}
+
+                            {% if company_profile.phone %}
+                            <div class="company-profile-email-div">
+                                <p><span class="company-profile-contact-text">Phone: {{ company_profile.phone }}</span></p>
+                            </div>
+                            {% endif %}
+
+                            {% if company_profile.facebook_link %}
+                            <div class="company-profile-email-div" style="margin-top: 20px;">
+                                <p><span class="company-profile-contact-text">Facebook: <a href="{{ company_profile.facebook_link }}"><span style="color: blue;">{{ company_profile.company.name }}</span></a></span></p>
+                            </div>
+                            {% endif %}
+
+                            {% if company_profile.instagram_link %}
+                            <div class="company-profile-email-div">
+                                <p><span class="company-profile-contact-text">Instagram: {{ company_profile.instagram_link }}</span></p>
+                            </div>
+                            {% endif %}
+
+                            {% if company_profile.tiktok_link %}
+                            <div class="company-profile-email-div">
+                                <p><span class="company-profile-contact-text">Tiktok: {{ company_profile.tiktok_link }}</span></p>
+                            </div>
+                            {% endif %}
+                        </div><!--col-md-6-->
+
+                        <div class="company-profile-image-div col-md-6">
+                            <!--<img src="{% static 'frontend/images/imagebox/6.png' %}" alt="images">-->
+                            {% if company_profile.image %}
+                                <img src="{{ company_profile.image.url }}" alt="images">
+                            {% else %}
+                                <img src="{% static 'frontend/images/imagebox/6.png' %}" alt="images"> 
+                            {% endif %}
+                            
+                        </div><!--col-md-6-->  
+                    </div><!--row-->
+                {% endif %}
+            {% endfor %}
+        </div><!--container -->
+    </section>
+
+
+    <!-- Flat Why Choose US -->
+    <section class="flat-row about-2">
+        <div class="mb-4">
+            <h1 class="text-center" style="margin-bottom: 30px;">Owners' Profiles</h1>
+        </div>
+        <div class="owner-profile-container">
+            {% for owner in owners %}
+            <div class="each-owner-profile">
+                <div class="owner-profile-image-div">
+                    <img src="{{ owner.image.url }}" alt="" style="width: 100px;">
+                </div>
+                <img src="{{ owner.name.url }}" alt="" style=>
+                <h3 class="text-center">{{ owner.name }}</h3>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+
+
+    <!-- Flat Team -->
+
+    <section class="flat-row team">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="title-section style2">
+
+                        <h1 class="title">Creative Team</h1>
+
+                    </div>
+
+                </div><!--col-md-12-->
+
+            </div><!--row-->
+
+
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <div class="flat-team">
+
+                        <div class="avatar">              
+
+                            <img src="{% static 'frontend/images/team/1.png' %}" alt="image">
+
+                        </div>
+
+
+
+                        <div class="content">                                    
+
+                            <h4 class="name">John Smith</h4>
+
+                            <p class="position">Master Chef</p>
+
+                            <div class="social-links style1">
+
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div><!--/.flat-team-->
+
+                </div><!--/.col-md-4-->
+
+
+
+                <div class="col-md-4">
+
+                    <div class="flat-team">
+
+                        <div class="avatar">              
+
+                            <img src="{% static 'frontend/images/team/2.png' %}" alt="image">
+
+                        </div>
+
+
+
+                        <div class="content">                                    
+
+                            <h4 class="name">John Smith</h4>
+
+                            <p class="position">Master Chef</p>
+
+                            <div class="social-links style1">
+
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div><!--/.flat-team-->
+
+                </div><!--/.col-md-4-->
+
+
+
+                <div class="col-md-4">
+
+                    <div class="flat-team">
+
+                        <div class="avatar">              
+
+                            <img src="{% static 'frontend/images/team/3.png' %}" alt="image">
+
+                        </div>
+
+
+
+                        <div class="content">                                    
+
+                            <h4 class="name">John Smith</h4>
+
+                            <p class="position">Master Chef</p>
+
+                            <div class="social-links style1">
+
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+
+                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div><!--/.flat-team-->
+
+                </div><!--/.col-md-4-->
+                
+            </div><!--/.row-->
+
+        </div><!--/.container -->
+
+    </section>
+
+
+
+    <!-- Flat testimonial -->
+
+    <section class="flat-row flat-testimonial about-3">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <div class="title-section margb-27px">
+
+                        <h1 class="title">Our Customers Say</h1>
+
+                    </div>
+
+                </div><!--col-md-12-->
+
+            </div><!--row-->
+
+
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+
+
+                    <div class="flat-carousel">
+
+                        <div class="owl-carousel-services">
+
+                            <div class="item-owl">
+
+                                <div class="blockquote-testimo">
+
+                                    <p> "A great Template for my website, my first reason is the design but I would have put <br/> all of them. One of the best templates I found, simple, easy, very good customer support, 
+
+                                        very easy to install...a very good template. Thank NthPsd
+
+
+
+                                    </p>                        
+
+                                </div>
+
+
+
+                                <div class="title-testimonial">
+
+                                    <h6 class="title"><a href="#">Eugene Fernandez</a></h6>
+
+                                    <p>UI-UX Designer</p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="item-owl">
+
+                                <div class="blockquote-testimo">
+
+                                    <p> "A great Template for my website, my first reason is the design but I would have put <br/> all of them. One of the best templates I found, simple, easy, very good customer support, very easy to install...a very good template. Thank NthPsd"
+
+                                    </p>                        
+
+                                </div>
+
+
+
+                                <div class="title-testimonial">
+
+                                    <h6 class="title-post"><a href="#">Eugene Fernandez</a></h6>
+
+                                    <p>UI-UX Designer</p>
+
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+                        </div><!--/.owl-carousel-services-v2-->
+
+                    </div><!--/.flat-carousel-v2-->
+
+                </div><!--/.col-md-12-->
+
+            </div><!--/.row-->
+
+        </div><!--/.container -->
+
+    </section>
+
+
+
+    <!-- Flat testimonial -->
+
+    <section class="flat-row flat-event">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-7">
+
+                    <div class="img-our">
+
+                        <img src="{% static 'frontend/images/about/1.png' %}" alt="images">
+
+                    </div>
+
+                </div><!--col-md-6-->   
+
+
+
+                <div class="col-md-5">
+
+                    <div class="flat-divider d45px">
+                    </div>
+
+                    <div class="title-section style2 ">
+                        <h1 class="title">Event for the week</h1>
+                    </div>
+
+                    <h4 class="menu-event">Wine Tastings</h4>
+
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,  eiusmod tempor inci di dunt ut labore et dolore magna aliqua. Ut enim ad mim reprehenderit veniam. Excepteur sint occaecat cupidatat non<br/>
+
+                        sunt in culpa qui officia
+                    </p>
+
+
+
+                    <p class="date-event">7:00 pm wednesday, 23 nov 2016</p>
+
+                    <div class="countdown">
+
+                        <div class="square days">
+
+                            <div class="numb">178</div>
+
+                            <div class="text">Days</div>
+
+                        </div> 
+
+
+
+                        <div class="square hours">
+
+                            <div class="numb">20</div>
+
+                            <div class="text">Hours</div>
+
+                        </div>
+
+
+
+                        <div class="square mins">
+
+                            <div class="numb">15</div>
+
+                            <div class="text">Minutes</div>
+
+                        </div>
+
+
+
+                        <div class="square secs">
+
+                            <div class="numb">08</div>
+
+                            <div class="text">Seconds</div>
+
+                        </div>    
+
+                    </div>
+
+
+
+                    <div class="read-more">
+
+                        <a href="#">Read more                                          
+
+                        </a>
+
+                    </div>
+
+                </div><!--col-md-6--> 
+
+            </div> 
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Flat client  -->
+
+    <section class="flat-row flat-clients s1">
+
+        <div class="container">
+
+            <div class="flat-client" data-item="4" data-nav="false" data-dots="false" data-auto="true" data-margin="30">
+
+
+
+                <div class="item">
+
+                    <a href="#"> 
+
+                        <img src="{% static 'frontend/images/clients/1.png' %}" alt="images">
+
+                    </a> 
+
+                </div>
+
+
+
+                <div class="item">
+
+                    <a href="#"> 
+
+                        <img src="{% static 'frontend/images/clients/2.png' %}" alt="images">
+
+                    </a> 
+
+                </div>
+
+
+
+                <div class="item">
+
+                    <a href="#"> 
+
+                        <img src="{% static 'frontend/images/clients/3.png' %}" alt="images">
+
+                    </a> 
+
+                </div> 
+
+
+
+                <div class="item">
+
+                    <a href="#"> 
+
+                        <img src="{% static 'frontend/images/clients/4.png' %}" alt="images">
+
+                    </a> 
+
+                </div>
+
+
+
+                <div class="item">
+
+                    <a href="#"> 
+
+                        <img src="{% static 'frontend/images/clients/2.png' %}" alt="images">
+
+                    </a> 
+
+                </div>
+
+
+
+                <div class="item">
+
+                    <a href="#"> 
+
+                        <img src="{% static 'frontend/images/clients/3.png' %}" alt="images">
+
+                    </a> 
+
+                </div> 
+
+
+
+                <div class="item">
+
+                    <a href="#"> 
+
+                        <img src="{% static 'frontend/images/clients/3.png' %}" alt="images">
+
+                    </a> 
+
+                </div> 
+
+
+
+                <div class="item">
+
+                    <a href="#"> 
+
+                        <img src="{% static 'frontend/images/clients/4.png' %}" alt="images">
+
+                    </a> 
+
+                </div>
+
+
+
+
+
+            </div><!-- /.flat-client -->       
+
+        </div>      
+
+    </section>
+{% endblock main_content %}
+
+{% block custom_js %}
+
+{% endblock custom_js %}
